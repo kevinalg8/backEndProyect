@@ -1,18 +1,14 @@
 import { Router } from "express";
 import * as controller from "../controller/user.controller"
 
-const route = Router();
+const Route = Router();
 
-route.get("/", (req,res)=>{
+Route.get("/", (req,res)=>{
     res.send(`<h1>Hola Mundo </h1>`);
 });
 
-route.get("/user",controller.findProductos);
-/* 
-route.get("/user/:id",controller.findUser);
-route.post("/user/",controller.insertUser);
-route.put("/user",controller.updateUser);
-route.delete("/user/:id", controller.deleteUser);
-*/
+Route.post("/users",controller.createUsers);
+Route.get("/users",controller.findAllUsers);
+//Route.put("/users",controller.updateUser);
 
-export default route;
+export default Route;
