@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-05-2023 a las 00:51:32
--- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 8.1.2
+-- Tiempo de generación: 26-05-2023 a las 23:40:35
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,7 +28,7 @@ DELIMITER $$
 -- Procedimientos
 --
 DROP PROCEDURE IF EXISTS `spCrearProducto`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spCrearProducto` (IN `_ESTADO` TINYINT(1), IN `_NOMBRE` VARCHAR(200), IN `_CANTIDAD` INT(100), IN `_PRECIO` DECIMAL(10,2), IN `_FOTO` BLOB, IN `_DESCRIPCION` VARCHAR(100))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spCrearProducto` (IN `_ESTADO` TINYINT(1), IN `_NOMBRE` VARCHAR(200), IN `_CANTIDAD` INT(100), IN `_PRECIO` DECIMAL(10,2), IN `_FOTO` BLOB, IN `_DESCRIPCION` VARCHAR(100))   BEGIN
     INSERT INTO categoria (estado, descripcion)
     VALUES (_ESTADO,_DESCRIPCION);
 
@@ -37,23 +37,28 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spCrearProducto` (IN `_ESTADO` TINY
 END$$
 
 DROP PROCEDURE IF EXISTS `spCreateUsers`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spCreateUsers` (IN `_NAME` VARCHAR(50))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spCreateUsers` (IN `_NAME` VARCHAR(50))   BEGIN
 INSERT INTO users ( NAME ) VALUES (_NAME);
 END$$
 
+DROP PROCEDURE IF EXISTS `spDeleteUser`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spDeleteUser` (IN `_ID` INT(8))   BEGIN 
+    DELETE FROM users WHERE ID = _ID; 
+END$$
+
 DROP PROCEDURE IF EXISTS `spFindAllUsers`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spFindAllUsers` ()  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spFindAllUsers` ()   BEGIN
 	SELECT ID, NAME FROM users;
 END$$
 
 DROP PROCEDURE IF EXISTS `spUpdateUser`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spUpdateUser` (IN `_ID` INT(8), IN `_NAME` VARCHAR(50))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spUpdateUser` (IN `_ID` INT(8), IN `_NAME` VARCHAR(50))   BEGIN
 	UPDATE users SET NAME =_NAME WHERE ID = _ID;
     
 END$$
 
 DROP PROCEDURE IF EXISTS `spVerProductos`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spVerProductos` ()  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spVerProductos` ()   BEGIN
 
 SELECT categoria.COD_CATE, categoria.descripcion, producto.nombre, producto.COD_PROD
 FROM categoria 
@@ -135,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `ID` int(8) NOT NULL AUTO_INCREMENT,
   `NAME` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `users`
@@ -143,9 +148,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`ID`, `NAME`) VALUES
 (1, 'Gamila'),
-(2, 'Wara'),
-(3, 'Santaigo'),
-(4, 'Sebastian');
+(8, 'Nicole renace'),
+(22, 'Gabriel Andres');
 
 --
 -- Restricciones para tablas volcadas
