@@ -31,3 +31,16 @@ export const updateUser = async (req, res)=>{
         console.error(error);
     }
 }
+export const deleteUser = async (req, res)=>{
+    const id = req.params.id;
+    try {
+        const result = await pool.query(`CALL spDeleteUser(${id})`);
+        if(result[0].affectedRows == 1)
+            res.json(result);
+        else
+            res.json({"rs": "No se elimino"});
+            
+    } catch (error) {
+        console.error(error);
+    }
+}

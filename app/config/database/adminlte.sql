@@ -23,4 +23,5 @@ DROP PROCEDURE `spCrearProducto`; CREATE DEFINER=`root`@`localhost` PROCEDURE `s
 
 CALL `spVerProductos`(); 
  CALL `spCreateUsers`();
+  CALL `spDeleteUser`();
 

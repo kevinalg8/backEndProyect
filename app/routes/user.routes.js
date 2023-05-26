@@ -10,6 +10,6 @@ Route.get("/", (req,res)=>{
 Route.post("/users",controller.createUsers);
 Route.get("/users",controller.findAllUsers);
 Route.put("/users",controller.updateUser);
-//Route.delete("/users/:id",controller.deleteUser);
+Route.delete("/users/:id",controller.deleteUser);
 
 export default Route;
