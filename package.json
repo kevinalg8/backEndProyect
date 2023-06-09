@@ -2,11 +2,12 @@
   "name": "repaso",
   "version": "1.0.0",
   "description": "Repaso",
-  "main": "app/index.js",
+  "main": "index.js",
   "scripts": {
     "dev": "set NODE_ENV=developer& nodemon app/index.js --exec babel-node",
     "qa": "set NODE_ENV=qa& nodemon app/index.js --exec babel-node",
-    "start": "set NODE_ENV=production& nodemon app/index.js --exec babel-node"
+    "start": "set NODE_ENV=production& node dist/index.js --exec babel-node",
+    "build": "babel app --out-dir dist"
   },
   "repository": {
     "type": "git",
