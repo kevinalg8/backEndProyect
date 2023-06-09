@@ -12,5 +12,4 @@ app.use(express.json());
 app.use("/api", allRoutes);
 app.use("/apiUser", alRoutes)
 
-
 export default app;
